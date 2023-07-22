@@ -1,0 +1,10 @@
+.settings {
+    background-color: lightgray;
+}
+
+.settings__elem {
+    align-items: center;
+    display: flex;
+    gap: 1%;
+}
+
