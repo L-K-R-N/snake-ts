@@ -4,6 +4,10 @@ import { useInterval } from './hooks/useInterval'
 import { Settings } from './components/settings/Settings'
 import { useTypesSelector } from './hooks/useTypesSelector'
 import { ControllerBox } from './components/ControllerBox/ControllerBox'
+import { useActions } from './hooks/useActions'
+import { directions } from './types/game'
+
+
 const canvasX = 1000
 const canvasY = 1000
 const initialSnake = [ [ 4, 10 ], [ 4, 10 ] ]
@@ -11,21 +15,19 @@ const initialApple = [ 14, 10 ]
 const scale = 50
 const timeDelay = 100
 
-	const left = [-1, 0]
-	const right = [1, 0]
-	const up = [0, -1]
-	const down = [0, 1]
 
 
 function App() {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null)
 	const [ snake, setSnake ] = useState(initialSnake)
 	const [ apple, setApple ] = useState(initialApple)
-	const [ direction, setDirection ] = useState<number[]>(up)
 	const [ delay, setDelay ] = useState<number | null>(null)
-	const [ gameOver, setGameOver ] = useState(false)
 	const [ score, setScore ] = useState(0)
-	const [isPlaying, setIsPlaying] = useState(false)
+	const {gameOver, isPlaying, direction} = useTypesSelector(state => state.game)
+	const {
+		gameOverActionCreator, 
+		isPlayingActionCreator, 
+		changeDirectionActionCreator} = useActions()
 	
 	
 
@@ -57,15 +59,15 @@ function App() {
 		}
 	}
 
-	function play(isPlaying: boolean) {
+	function play() {
 		if (!isPlaying) {
 		setSnake(initialSnake)
 		setApple(initialApple)
-		setDirection(right)
+		changeDirectionActionCreator(directions.right)
 		setDelay(timeDelay)
 		setScore(0)
-		setGameOver(false)
-		setIsPlaying(true)
+		gameOverActionCreator(false)
+		isPlayingActionCreator(true)
 		} else {
 			return
 		}
@@ -98,9 +100,9 @@ function App() {
 		newSnake.unshift(newSnakeHead)
 		if (checkCollision(newSnakeHead)) {
 			setDelay(null)
-			setGameOver(true)
+			gameOverActionCreator(true)
 			handleSetScore()
-			setIsPlaying(false)
+			isPlayingActionCreator(false)
 		}
 		if (!appleAte(newSnake)) {
 			newSnake.pop()
@@ -117,48 +119,50 @@ function App() {
 		}
 		return false
 	}
-	const changeDirection = (e: React.KeyboardEvent<HTMLDivElement>) => {
+	const changeKeyboardDirection = (e: React.KeyboardEvent<HTMLDivElement>) => {
 		switch (e.key) {
 			case "ArrowLeft":
-				if (checkDirection(right)) {
+				if (checkDirection(directions.right)) {
 					break
 				} else {
-					setDirection(left)
+					changeDirectionActionCreator(directions.left)
 				}	
 				break
 			case "ArrowUp":
-				if (checkDirection(down)) {
+				if (checkDirection(directions.down)) {
 					break
 				} else {
-					setDirection(up)
+					changeDirectionActionCreator(directions.up)
 				}	
 				break
 			case "ArrowRight":
-				if (checkDirection(left)) {
+				if (checkDirection(directions.left)) {
 				break
 				} else {
-					setDirection(right)
+					changeDirectionActionCreator(directions.right)
+
 				}	
 				break
 			case "ArrowDown":
-				if (checkDirection(up)) {
+				if (checkDirection(directions.up)) {
 					break
 				} else {
-					setDirection(down)
+					changeDirectionActionCreator(directions.down)
+
 				}	
 				break
 		}
 	}
 
 	return (
-		<div onKeyDown={(e) => changeDirection(e)}>
+		<div onKeyDown={(e) => changeKeyboardDirection(e)}>
 			
 			{/* <img src='./oldMonitor.png' alt="monitor" width="4000" className="monitor" /> */}
 			<div className="playAreaBox">
 				<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
-				<ControllerBox changeDirection={changeDirection}/>
+				<ControllerBox/>
 				{gameOver && <div className="gameOver">Game Over</div>}
-				<button onClick={() => play(isPlaying)} className="playButton">
+				<button onClick={() => play()} className="playButton">
 					Play
 				</button>
 			</div>

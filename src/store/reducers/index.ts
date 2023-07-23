@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import { controllerReducer } from "./controllerReducer";
+import { gameReducer } from "./gameReducer";
 export const rootReducer = combineReducers({
-    controller: controllerReducer,
+    game: gameReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

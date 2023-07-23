@@ -1,5 +1,5 @@
-import * as ControllerActionCreators  from './controller'
+import * as GameActionCreators  from './game';
 
 export default {
-    ...ControllerActionCreators,
+    ...GameActionCreators,
 }

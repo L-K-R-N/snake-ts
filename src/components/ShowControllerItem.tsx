@@ -1,23 +1,27 @@
-import { useState } from 'react'
 import { useTypesSelector } from '../hooks/useTypesSelector'
-import { useActions } from '../hooks/useAction'
-import { ControllerState } from '../types/controller';
+import { useActions } from '../hooks/useActions'
+import {useEffect} from 'react'
+
 
 
 export const ShowControllerItem: React.FC = () => {
-    const {show} = useTypesSelector(state => state.controller)
-    const {controllerShowActionCreator, controllerHideActionCreator} = useActions()
+    const {isPlaying, showController} = useTypesSelector(state => state.game)
+    const {showControllerActionCreator, isPlayingActionCreator} = useActions()
     const changeShowController = () => {
-        if (show) {
-            controllerHideActionCreator()
+        if (showController) {
+            showControllerActionCreator(false)
         } else {
-            controllerShowActionCreator()
+            showControllerActionCreator(true)
         }
-        console.log(show)
+        console.log(showController)
     }
+
+    useEffect(() => {
+        
+    })
     return (
         <div className="showControllerBox settings__elem">
-            <input onChange={() => changeShowController()} type="checkbox" name="showController" id='showController' checked={show}/>
+            <input onChange={() => changeShowController()} type="checkbox" name="showController" id='showController' checked={showController}/>
             <label htmlFor="showController">Контроллер</label>
         </div>
     )
