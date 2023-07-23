@@ -1,7 +1,28 @@
 .settings {
     background-color: lightgray;
+    min-height: 100vh;
+    width: 100vw;
+    background: lightpink;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.settings-hide {
+    transform: translateX(-100%);
+}
+
+.settings-close {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    width: 30px;
+    height: 30px;
+    background: #000;
+}
 .settings__elem {
     align-items: center;
     display: flex;

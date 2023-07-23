@@ -6,7 +6,7 @@ import './ControllerBox.css'
 
 
 export const ControllerBox: React.FC = () => {
-    const {showController, direction} = useTypesSelector(state => state.game)
+    const {showController, direction, isPlaying} = useTypesSelector(state => state.game)
     const {changeDirectionActionCreator} = useActions()
 
     const checkDirection = (newDirection: number[]) => {
@@ -55,7 +55,7 @@ export const ControllerBox: React.FC = () => {
     
     }
     return (
-        <div onClick={(e) => changePointerDirection(e)} className="controllerBox" style={{display: showController ? 'grid' : 'none'}}>
+        <div onClick={(e) => changePointerDirection(e)} className="controllerBox" style={{display: showController && isPlaying ? 'grid' : 'none'}}>
             <ConrollerButton classValue={DataDirectionTypes.left} dataDirection={DataDirectionTypes.left} children={'left'}></ConrollerButton>
             <ConrollerButton classValue={DataDirectionTypes.up} dataDirection={DataDirectionTypes.up} children={'up'}></ConrollerButton>
             <ConrollerButton classValue={DataDirectionTypes.down} dataDirection={DataDirectionTypes.down} children={'down'}></ConrollerButton>

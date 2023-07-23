@@ -5,6 +5,7 @@ const initialState = {
     isPlaying: false,
     showController: false,
     direction: directions.right,
+    settings: false,
 }
 
 export const gameReducer = (state = initialState, action: GameAction): GameState => {
@@ -17,6 +18,8 @@ export const gameReducer = (state = initialState, action: GameAction): GameState
             return {...state, showController: action.payload}
         case gameActionTypes.CHANGE_DIRECTION: 
             return {...state, direction: action.payload}
+        case gameActionTypes.SETTINGS_OPEN: 
+            return {...state, settings: action.payload}
         default: 
             return state;
     }

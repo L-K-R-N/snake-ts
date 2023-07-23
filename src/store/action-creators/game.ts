@@ -19,3 +19,8 @@ export const showControllerActionCreator = (payload: boolean) => {
 export const changeDirectionActionCreator = (payload: number[]) => {
     return {type: gameActionTypes.CHANGE_DIRECTION, payload: payload}
 }
+
+
+export const settingsOpenActionCreator = (payload: boolean) => {
+    return {type: gameActionTypes.SETTINGS_OPEN, payload: payload}
+}

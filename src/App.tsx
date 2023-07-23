@@ -23,11 +23,12 @@ function App() {
 	const [ apple, setApple ] = useState(initialApple)
 	const [ delay, setDelay ] = useState<number | null>(null)
 	const [ score, setScore ] = useState(0)
-	const {gameOver, isPlaying, direction} = useTypesSelector(state => state.game)
+	const {gameOver, isPlaying, direction, settings} = useTypesSelector(state => state.game)
 	const {
 		gameOverActionCreator, 
 		isPlayingActionCreator, 
-		changeDirectionActionCreator} = useActions()
+		changeDirectionActionCreator,
+		settingsOpenActionCreator} = useActions()
 	
 	
 
@@ -58,6 +59,11 @@ function App() {
 			localStorage.setItem("snakeScore", JSON.stringify(score))
 		}
 	}
+	// const playButton = useRef<HTMLButtonElement | null>(null)
+	// const deleteButton = (display: string) => {
+	// 	if (!playButton.current) return;
+	// 	playButton.current.style. = display;
+	// }
 
 	function play() {
 		if (!isPlaying) {
@@ -95,6 +101,7 @@ function App() {
 	}
 
 	function runGame() {
+		
 		const newSnake = [ ...snake ]
 		const newSnakeHead = [ newSnake[0][0] + direction[0], newSnake[0][1] + direction[1] ]
 		newSnake.unshift(newSnakeHead)
@@ -155,23 +162,40 @@ function App() {
 	}
 
 	return (
-		<div onKeyDown={(e) => changeKeyboardDirection(e)}>
+		<div className="App" onKeyDown={(e) => changeKeyboardDirection(e)}>
+			<div className="page">	
+				<header className='header'>
+					<div className="wrapper">
+						<div className="header__content">
+							<div className="settings__container">
+								<div onClick={() => settingsOpenActionCreator(true)} className='burger settings__burger'>
+								
+								</div>
+								<Settings/>
+							</div>
+							
+							<div className="scoreBox">
+								<h2>Score: {score}</h2>
+								<h2>High Score: {localStorage.getItem("snakeScore")}</h2>
+							</div>
+							</div>
+						</div>
+				</header>
+				<main className="main">
+					
+					<div className="playAreaBox">
+						<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
+						<ControllerBox/>
+						{gameOver && <div className="gameOver">Game Over</div>}
+						<button onClick={() => play()} className="playButton">
+							Play
+						</button>
+					</div>
+					
+					
+				</main>
 			
-			{/* <img src='./oldMonitor.png' alt="monitor" width="4000" className="monitor" /> */}
-			<div className="playAreaBox">
-				<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
-				<ControllerBox/>
-				{gameOver && <div className="gameOver">Game Over</div>}
-				<button onClick={() => play()} className="playButton">
-					Play
-				</button>
 			</div>
-			
-			<div className="scoreBox">
-				<h2>Score: {score}</h2>
-				<h2>High Score: {localStorage.getItem("snakeScore")}</h2>
-			</div>
-			<Settings/>
 		</div>
 	)
 }
