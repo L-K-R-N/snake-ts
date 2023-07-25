@@ -1,9 +1,8 @@
 export enum gameActionTypes {
     GAMEOVER = 'GAMEOVER',
     IS_PLAYING = 'IS_PLAYING',
-    SHOW_CONTROLLER = 'SHOW_CONTROLLER',
     CHANGE_DIRECTION = 'CHANGE_DIRECTION',
-    SETTINGS_OPEN = 'SETTINGS_OPEN',
+    CHANGE_DELAY = 'CHANGE_DELAY',
 }
 
 interface GameOverAction {
@@ -16,15 +15,13 @@ interface IsPlayingAction {
     payload: boolean;
 }
 
-interface ShowControllerAction {
-    type: gameActionTypes.SHOW_CONTROLLER;
-    payload: boolean;
-}
+
 
 interface DirectionAction {
     type: gameActionTypes.CHANGE_DIRECTION;
     payload: number[];
 }
+
 
 export const directions = {
     left: [-1, 0],
@@ -33,21 +30,20 @@ export const directions = {
     down: [0, 1]
 }
 
-
-interface SettingsAction {
-    type: gameActionTypes.SETTINGS_OPEN;
-    payload: boolean;
+interface ChangeDelayAction {
+    type: gameActionTypes.CHANGE_DELAY;
+    payload: number | null;
 }
 
 
 
 
-export type GameAction = GameOverAction | IsPlayingAction | ShowControllerAction | DirectionAction | SettingsAction;
+
+export type GameAction = GameOverAction | IsPlayingAction | DirectionAction | ChangeDelayAction;
 
 export interface GameState {
     gameOver: boolean;
     isPlaying: boolean;
-    showController: boolean;
     direction: number[];
-    settings: boolean;
+    delay: number | null;
 }

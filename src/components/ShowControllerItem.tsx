@@ -5,7 +5,7 @@ import {useEffect} from 'react'
 
 
 export const ShowControllerItem: React.FC = () => {
-    const {showController} = useTypesSelector(state => state.game)
+    const {showController} = useTypesSelector(state => state.settings)
     const {showControllerActionCreator} = useActions()
     const changeShowController = () => {
         if (showController) {

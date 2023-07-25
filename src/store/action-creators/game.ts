@@ -11,16 +11,13 @@ export const isPlayingActionCreator = (payload: boolean) => {
 }
 
 
-export const showControllerActionCreator = (payload: boolean) => {
-    return {type: gameActionTypes.SHOW_CONTROLLER, payload: payload}
-}
-
 
 export const changeDirectionActionCreator = (payload: number[]) => {
     return {type: gameActionTypes.CHANGE_DIRECTION, payload: payload}
 }
 
-
-export const settingsOpenActionCreator = (payload: boolean) => {
-    return {type: gameActionTypes.SETTINGS_OPEN, payload: payload}
+export const changeDelayActionCreator = (payload: number | null) => {
+    return {type: gameActionTypes.CHANGE_DELAY, payload: payload}
 }
+
+

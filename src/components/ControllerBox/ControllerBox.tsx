@@ -6,7 +6,8 @@ import './ControllerBox.css'
 
 
 export const ControllerBox: React.FC = () => {
-    const {showController, direction, isPlaying} = useTypesSelector(state => state.game)
+    const {direction, isPlaying} = useTypesSelector(state => state.game)
+    const {showController} = useTypesSelector(state => state.settings)
     const {changeDirectionActionCreator} = useActions()
 
     const checkDirection = (newDirection: number[]) => {
