@@ -1,7 +1,11 @@
 import {Link} from 'react-router-dom'
 import { Navbar } from '../../components/UI/Navbar/Navbar'
 import './Menu.css'
+import { useTypesSelector } from '../../hooks/useTypesSelector'
+import { useActions } from '../../hooks/useActions'
 export const Menu: React.FC = () => {
+    const {pause} = useTypesSelector(state => state.game)
+    const {pauseOpenedActionCreator} = useActions()
 
     return (
         <div className="menu">
@@ -14,12 +18,15 @@ export const Menu: React.FC = () => {
                 </div>
             </header>
             <main className="menu__main">
-                <div className="wrapper menu__main-conteiner">
+                <div className="wrapper menu__main-container">
                     <section className="menu__main-content">
                         <h2 className='menu__main-title'>Змейка</h2>
                         <Navbar objects={[
                             {value: 'game',
-                            text: 'Играть'},
+                            text: 'Играть',
+                            onClick() {
+                                pauseOpenedActionCreator(false)
+                            },},
                             {value: 'settings',
                             text: 'Настройки'}
                             ]}/>

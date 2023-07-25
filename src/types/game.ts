@@ -2,7 +2,7 @@ export enum gameActionTypes {
     GAMEOVER = 'GAMEOVER',
     IS_PLAYING = 'IS_PLAYING',
     CHANGE_DIRECTION = 'CHANGE_DIRECTION',
-    CHANGE_DELAY = 'CHANGE_DELAY',
+    PAUSE = 'PAUSE'
 }
 
 interface GameOverAction {
@@ -30,20 +30,19 @@ export const directions = {
     down: [0, 1]
 }
 
-interface ChangeDelayAction {
-    type: gameActionTypes.CHANGE_DELAY;
-    payload: number | null;
+interface PauseOpenedAction {
+    type: gameActionTypes.PAUSE;
+    payload: boolean;
 }
 
 
 
 
-
-export type GameAction = GameOverAction | IsPlayingAction | DirectionAction | ChangeDelayAction;
+export type GameAction = GameOverAction | IsPlayingAction | DirectionAction | PauseOpenedAction;
 
 export interface GameState {
     gameOver: boolean;
     isPlaying: boolean;
     direction: number[];
-    delay: number | null;
+    pause: boolean;
 }

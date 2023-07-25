@@ -4,30 +4,21 @@ import { useTypesSelector } from '../../hooks/useTypesSelector'
 
 import './Settings.css'
 import { ShowControllerItem } from '../../components/ShowControllerItem'
+import { useNavigate } from 'react-router'
 export const Settings: React.FC = () => {
-    const {pause} = useTypesSelector(state => state.pause)
-    const {delay} = useTypesSelector(state => state.pause)
     const {pauseOpenedActionCreator, changeDelayActionCreator} = useActions()
-    const settingsRef = useRef<HTMLDivElement | null>(null)
 
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        if (!settingsRef.current) return;
-        settingsRef.current.className = pause ? 'settings' : 'settings settings-hide'
-    }, [pause])
-    const closeSettings = () => {
-        pauseOpenedActionCreator(false)
-        changeDelayActionCreator(100)
-    }
     return (
-        <div ref={settingsRef} className="settings">
+        <div className="settings">
             <header className="settings__header">
                 <div className="wrapper">
                     <section className="settings__header-content">
-                        <div onClick={() => closeSettings()} className="settings-close">
+                        <div onClick={() => navigate(-1)} className="settings-close">
 
                         </div>
-                        <h2 className="settings__header-title">SETTINGS</h2>
+                        <h2 className="settings__header-title">НАСТРОЙКИ</h2>
                     </section>
                 </div>
             </header>

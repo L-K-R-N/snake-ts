@@ -16,8 +16,6 @@ export const changeDirectionActionCreator = (payload: number[]) => {
     return {type: gameActionTypes.CHANGE_DIRECTION, payload: payload}
 }
 
-export const changeDelayActionCreator = (payload: number | null) => {
-    return {type: gameActionTypes.CHANGE_DELAY, payload: payload}
+export const pauseOpenedActionCreator = (payload: boolean) => {
+    return {type: gameActionTypes.PAUSE, payload: payload}
 }
-
-

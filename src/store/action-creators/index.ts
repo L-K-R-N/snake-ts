@@ -1,9 +1,9 @@
 import * as GameActionCreators  from './game';
-import * as PauseActionCreators from './pause'
 import * as SettingsActionCreators from './settings'
+import * as NullsActionCreators from './nulls'
 
 export default {
     ...GameActionCreators,
-    ...PauseActionCreators,
     ...SettingsActionCreators,
+    ...NullsActionCreators,
 }

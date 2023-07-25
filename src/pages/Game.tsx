@@ -5,7 +5,6 @@ import { useActions } from '../hooks/useActions'
 import { useInterval } from '../hooks/useInterval'
 import { directions } from '../types/game'
 import { ControllerBox } from '../components/ControllerBox/ControllerBox'
-import { Settings } from './settings/Settings'
 import { Pause } from '../components/Pause/Pause'
 
 
@@ -25,7 +24,8 @@ export const Game: React.FC = () => {
 	const [ snake, setSnake ] = useState(initialSnake)
 	const [ apple, setApple ] = useState(initialApple)
 	const [ score, setScore ] = useState(0)
-	const {gameOver, isPlaying, direction, delay} = useTypesSelector(state => state.game)
+	const {gameOver, isPlaying, direction} = useTypesSelector(state => state.game)
+    const {delay} = useTypesSelector(state => state.nulls)
 	const {
 		gameOverActionCreator, 
 		isPlayingActionCreator, 
@@ -174,8 +174,8 @@ export const Game: React.FC = () => {
 				<header className='header'>
 					<div className="wrapper">
 						<div className="header__content">
-							<div className="settings__container">
-								<div onClick={() => pause()} className='burger settings__burger'>
+							<div className="pause__container">
+								<div onClick={() => pause()} className='burger pause__burger'>
 								
 								</div>
 								<Pause/>

@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { gameReducer } from "./gameReducer";
-import { pauseReducer } from "./pauseReducer";
 import { settingsReducer } from "./settingsReducer";
+import { nullsReducer } from "./nullReducer";
 export const rootReducer = combineReducers({
     game: gameReducer,
-    pause: pauseReducer,
     settings: settingsReducer,
+    nulls: nullsReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
