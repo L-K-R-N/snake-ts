@@ -15,9 +15,9 @@ export const ShowControllerItem: React.FC = () => {
         }
     }
     return (
-        <div className="showControllerBox settings__elem">
+        <div className="show-controllerBox settings__elem">
             <input onChange={() => changeShowController()} type="checkbox" name="showController" id='showController' checked={showController}/>
-            <label htmlFor="showController">Контроллер</label>
+            <label htmlFor="showController" className='show-controller'>Контроллер</label>
         </div>
     )
 }

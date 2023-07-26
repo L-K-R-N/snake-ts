@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import '../styles/App.css'
-import { useTypesSelector } from '../hooks/useTypesSelector'
-import { useActions } from '../hooks/useActions'
-import { useInterval } from '../hooks/useInterval'
-import { directions } from '../types/game'
-import { ControllerBox } from '../components/ControllerBox/ControllerBox'
-import { Pause } from '../components/Pause/Pause'
-
+import '../../styles/App.css'
+import { useTypesSelector } from '../../hooks/useTypesSelector'
+import { useActions } from '../../hooks/useActions'
+import { useInterval } from '../../hooks/useInterval'
+import { directions } from '../../types/game'
+import { ControllerBox } from '../../components/ControllerBox/ControllerBox'
+import { Pause } from '../../components/Pause/Pause'
+import './Game.css'
 
 
 
@@ -170,36 +170,36 @@ export const Game: React.FC = () => {
 	}
 
     return (
-        <div className="page" onKeyDown={(e) => changeKeyboardDirection(e)}>	
-				<header className='header'>
-					<div className="wrapper">
-						<div className="header__content">
-							<div className="pause__container">
-								<div onClick={() => pause()} className='burger pause__burger'>
-								
-								</div>
-								<Pause/>
-							</div>
+        <div className="game" onKeyDown={(e) => changeKeyboardDirection(e)}>	
+				<header className='game__header'>
+					<div className="wrapper game__header-content">
+						<div className="pause__container">
+							<div onClick={() => pause()} className='burger pause-burger'>
 							
-							<div className="scoreBox">
-								<h2>Score: {score}</h2>
-								<h2>High Score: {localStorage.getItem("snakeScore")}</h2>
 							</div>
-							</div>
+							<Pause/>
 						</div>
-				</header>
-				<main className="main">
-					
-					<div className="playAreaBox">
-						<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
-						<ControllerBox/>
-						{gameOver && <div className="gameOver">Game Over</div>}
-						<button onClick={() => play()} className="playButton">
-							Play
-						</button>
+						
+						<div className="game__header-scorebox scoreBox">
+							<h2 className='scorebox__item'>Score: {score}</h2>
+							<h2 className='scorebox__item'>High Score: {localStorage.getItem("snakeScore")}</h2>
+						</div>
 					</div>
-					
-					
+				</header>
+				<main className="game__main">
+					<div className="wrapper game__main-content">
+						<div className="game__main-container playAreaBox">
+							<div className=''>
+								<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
+								{gameOver && <div className="gameOver">Game Over</div>}
+							</div>
+							<ControllerBox/>
+							
+							<button onClick={() => play()} className="play-button">
+								Play
+							</button>
+						</div>
+					</div>
 				</main>
 			
 			</div>

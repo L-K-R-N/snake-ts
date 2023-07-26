@@ -23,13 +23,15 @@ export const Settings: React.FC = () => {
                 </div>
             </header>
             <main className="settings__main">
-                <div className="wrapper">
-                    <div className="settings__main-content">
+                <div className="wrapper settings__main-content">
+                    <div className="settings__main-container">
+                        <div className='settings__menu'></div>
                         <div className="settings__options">
-                            <ShowControllerItem/>
+                                <ShowControllerItem/>
                         </div>
                     </div>
                 </div>
+                
             </main>
         </div>
     )

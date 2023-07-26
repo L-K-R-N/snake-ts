@@ -13,23 +13,33 @@ export const Menu: React.FC = () => {
                 <div className="wrapper">
                     <h2 className="menu__header-content">
                         <img src="" alt="" className="logo" />
-                        <h2 className='menu__header-title'>Меню</h2>
+                        <h2 className='menu__header-title'>МЕНЮ</h2>
                     </h2>
                 </div>
             </header>
             <main className="menu__main">
                 <div className="wrapper menu__main-container">
                     <section className="menu__main-content">
-                        <h2 className='menu__main-title'>Змейка</h2>
-                        <Navbar objects={[
-                            {value: 'game',
-                            text: 'Играть',
-                            onClick() {
-                                pauseOpenedActionCreator(false)
-                            },},
-                            {value: 'settings',
-                            text: 'Настройки'}
-                            ]}/>
+                        <h1 className='menu__main-title'>ЗМЕЙКА</h1>
+                        <Navbar
+                            navClass='menu__nav'
+                            ulClass='menu__list'
+                            objects={[
+                                {value: 'game',
+                                text: 'Играть',
+                                liClass: 'menu__list-item',
+                                aClass: 'menu__list-link',
+                                onClick() {
+                                    pauseOpenedActionCreator(false)
+                                }},
+
+                                {value: 'settings',
+                                text: 'Настройки',
+                                liClass: 'menu__list-item',
+                                aClass: 'menu__list-link'},
+                            
+                            ]}
+                            />
                     </section>
                 </div>
             </main>

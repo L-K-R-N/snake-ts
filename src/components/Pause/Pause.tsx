@@ -30,13 +30,20 @@ export const Pause: React.FC = () => {
                 </div>
             </header>
             <main className="pause__main">
-                <div className="wrapper pause__main-container">
-                    <div className="pause__main-content">
-                    <Navbar objects={[
+                <div className="wrapper pause__main-content">
+                    <div className="pause__main-container ">
+                    <Navbar navClass='pause__nav'
+                            ulClass='pause__list'
+                            objects={[
                             {value: '/',
-                            text: 'Гл. Меню'},
+                            text: 'Гл. Меню',
+                            liClass: 'pause__list-item',
+                            aClass: 'pause__list-link',
+                            },
                             {value: '/settings',
-                            text: 'Настройки'}
+                            text: 'Настройки',
+                            liClass: 'pause__list-item',
+                            aClass: 'pause__list-link',}
                             ]}
                     />
                     </div>
