@@ -3,8 +3,12 @@ import { Navbar } from "../UI/Navbar/Navbar"
 import './Pause.css'
 import { useTypesSelector } from "../../hooks/useTypesSelector"
 import { useActions } from "../../hooks/useActions"
-export const Pause: React.FC = () => {
-    const {pause} = useTypesSelector(state => state.game)
+
+interface Props {
+    button: HTMLButtonElement | null
+}
+export const Pause: React.FC<Props> = ({button}) => {
+    const {pause, isPlaying} = useTypesSelector(state => state.game)
     const {pauseOpenedActionCreator, changeDelayActionCreator} = useActions()
     const pauseRef = useRef<HTMLDivElement | null>(null)
 
@@ -14,8 +18,13 @@ export const Pause: React.FC = () => {
     }, [pause])
 
     const resume = () => {
-        pauseOpenedActionCreator(false)
-        changeDelayActionCreator(100)
+        pauseOpenedActionCreator(false);
+        if (button) {
+            button.focus()
+        }
+        if (isPlaying) {
+            changeDelayActionCreator(100)
+        }
     }
     return (
         <div className="pause" ref={pauseRef}>

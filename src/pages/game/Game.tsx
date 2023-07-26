@@ -168,7 +168,7 @@ export const Game: React.FC = () => {
 		pauseOpenedActionCreator(true)
 		changeDelayActionCreator(99999)
 	}
-
+	const playBtn = useRef<HTMLButtonElement>(null)
     return (
         <div className="game" onKeyDown={(e) => changeKeyboardDirection(e)}>	
 				<header className='game__header'>
@@ -177,7 +177,7 @@ export const Game: React.FC = () => {
 							<div onClick={() => pause()} className='burger pause-burger'>
 							
 							</div>
-							<Pause/>
+							<Pause button={playBtn.current}/>
 						</div>
 						
 						<div className="game__header-scorebox scoreBox">
@@ -195,7 +195,7 @@ export const Game: React.FC = () => {
 							</div>
 							<ControllerBox/>
 							
-							<button onClick={() => play()} className="play-button">
+							<button ref={playBtn} autoFocus onClick={() => play()} className="play-button">
 								Play
 							</button>
 						</div>
