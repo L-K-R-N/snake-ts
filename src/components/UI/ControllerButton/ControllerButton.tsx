@@ -16,7 +16,7 @@ export enum DataDirectionTypes {
 interface Props {
     children: string | ReactNode;
     dataDirection?: DataDirectionTypes;
-    classValue: DataDirectionTypes;
+    classValue: string;
 }
 
 export const ConrollerButton: React.FC<Props> = ({children, classValue, ...props}) => {

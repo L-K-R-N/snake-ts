@@ -73,7 +73,7 @@ export const Game: React.FC = () => {
 		setSnake(initialSnake)
 		setApple(initialApple)
 		changeDirectionActionCreator(directions.right)
-		changeDelayActionCreator(timeDelay)
+		changeDelayActionCreator(Number(localStorage.getItem('delay')))
 		setScore(0)
 		gameOverActionCreator(false)
 		isPlayingActionCreator(true)
@@ -166,7 +166,8 @@ export const Game: React.FC = () => {
 
 	const pause = () => {
 		pauseOpenedActionCreator(true)
-		changeDelayActionCreator(99999)
+		localStorage.setItem('lastDelay', delay)
+		changeDelayActionCreator(null)
 	}
 	const playBtn = useRef<HTMLButtonElement>(null)
     return (
@@ -189,10 +190,10 @@ export const Game: React.FC = () => {
 				<main className="game__main">
 					<div className="wrapper game__main-content">
 						<div className="game__main-container playAreaBox">
-							<div className=''>
-								<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
-								{gameOver && <div className="gameOver">Game Over</div>}
-							</div>
+
+							<canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
+							{gameOver && <div className="gameOver">Game Over</div>}
+
 							<ControllerBox/>
 							
 							<button ref={playBtn} autoFocus onClick={() => play()} className="play-button">

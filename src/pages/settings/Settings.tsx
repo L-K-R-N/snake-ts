@@ -3,8 +3,9 @@ import { useActions } from '../../hooks/useActions'
 import { useTypesSelector } from '../../hooks/useTypesSelector'
 
 import './Settings.css'
-import { ShowControllerItem } from '../../components/ShowControllerItem'
+import { ControllerChange } from '../../components/ControllerChange'
 import { useNavigate } from 'react-router'
+import { DelayChange } from '../../components/DelayChange'
 export const Settings: React.FC = () => {
     const {pauseOpenedActionCreator, changeDelayActionCreator} = useActions()
 
@@ -27,7 +28,8 @@ export const Settings: React.FC = () => {
                     <div className="settings__main-container">
                         <div className='settings__menu'></div>
                         <div className="settings__options">
-                                <ShowControllerItem/>
+                                <ControllerChange/>
+                                <DelayChange/>
                         </div>
                     </div>
                 </div>

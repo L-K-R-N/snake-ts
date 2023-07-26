@@ -23,7 +23,10 @@ export const Pause: React.FC<Props> = ({button}) => {
             button.focus()
         }
         if (isPlaying) {
-            changeDelayActionCreator(100)
+
+            changeDelayActionCreator(Number(localStorage.getItem('lastDelay')))
+        } else {
+            
         }
     }
     return (

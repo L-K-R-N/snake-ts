@@ -4,7 +4,7 @@ import {useEffect} from 'react'
 
 
 
-export const ShowControllerItem: React.FC = () => {
+export const ControllerChange: React.FC = () => {
     const {showController} = useTypesSelector(state => state.settings)
     const {showControllerActionCreator} = useActions()
     const changeShowController = () => {
@@ -17,7 +17,7 @@ export const ShowControllerItem: React.FC = () => {
     return (
         <div className="show-controllerBox settings__elem">
             <input onChange={() => changeShowController()} type="checkbox" name="showController" id='showController' checked={showController}/>
-            <label htmlFor="showController" className='show-controller'>Контроллер</label>
+            <label htmlFor="showController" className='show-controller'>КОТРОЛЛЕР</label>
         </div>
     )
 }

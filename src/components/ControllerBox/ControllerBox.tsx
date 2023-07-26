@@ -57,10 +57,10 @@ export const ControllerBox: React.FC = () => {
     }
     return (
         <div onClick={(e) => changePointerDirection(e)} className="controllerBox" style={{display: showController && isPlaying ? 'grid' : 'none'}}>
-            <ConrollerButton classValue={DataDirectionTypes.left} dataDirection={DataDirectionTypes.left} children={'left'}></ConrollerButton>
-            <ConrollerButton classValue={DataDirectionTypes.up} dataDirection={DataDirectionTypes.up} children={'up'}></ConrollerButton>
-            <ConrollerButton classValue={DataDirectionTypes.down} dataDirection={DataDirectionTypes.down} children={'down'}></ConrollerButton>
-            <ConrollerButton classValue={DataDirectionTypes.right} dataDirection={DataDirectionTypes.right} children={'right'}></ConrollerButton>
+            <ConrollerButton classValue={'left controller-button'} dataDirection={DataDirectionTypes.left} children={'left'}></ConrollerButton>
+            <ConrollerButton classValue={'up controller-button'} dataDirection={DataDirectionTypes.up} children={'up'}></ConrollerButton>
+            <ConrollerButton classValue={'down controller-button'} dataDirection={DataDirectionTypes.down} children={'down'}></ConrollerButton>
+            <ConrollerButton classValue={'right controller-button' } dataDirection={DataDirectionTypes.right} children={'right'}></ConrollerButton>
         </div>
     )
 }
